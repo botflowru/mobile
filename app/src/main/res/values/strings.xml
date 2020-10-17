@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">botflow</string>
+    <integer name="com_vk_sdk_AppId">7632134</integer>
 </resources>
