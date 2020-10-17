@@ -68,17 +68,25 @@ class AuthActivity : AppCompatActivity() {
         val callback = object: VKAuthCallback {
             override fun onLogin(token: VKAccessToken) {
                 authorisedWithVK(token)
+                println("vk")
             }
 
             override fun onLoginFailed(errorCode: Int) {
                 Toast.makeText(this@AuthActivity, "VK auth error", Toast.LENGTH_LONG).show()
             }
         }
+        if (data == null || !VK.onActivityResult(requestCode, resultCode, data, callback)) {
+            super.onActivityResult(requestCode, resultCode, data)
+        }
     }
     private fun authorisedWithGoogle(account: GoogleSignInAccount) {
-        Toast.makeText(this, account.displayName, Toast.LENGTH_LONG).show()
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("email", account.email.toString())
+        startActivity(intent)
     }
     private fun authorisedWithVK(token: VKAccessToken) {
-
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra("email", token.email.toString())
+        startActivity(intent)
     }
 }
