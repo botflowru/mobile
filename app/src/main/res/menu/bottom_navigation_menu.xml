@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bot_list"
+        android:enabled="true"
+        android:icon="@drawable/bot_list_icon"
+        android:title="@string/bot_list"/>
+    <item
+        android:id="@+id/account"
+        android:enabled="true"
+        android:icon="@drawable/account_icon"
+        android:title="@string/account"/>
+
+</menu>

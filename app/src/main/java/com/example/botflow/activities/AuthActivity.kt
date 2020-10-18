@@ -1,4 +1,4 @@
-package com.example.botflow
+package com.example.botflow.activities
 
 import android.animation.ObjectAnimator
 import android.content.Intent
@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.botflow.R
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -15,9 +16,14 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
 import com.vk.api.sdk.VK
+import com.vk.api.sdk.VKApiCallback
 import com.vk.api.sdk.auth.VKAccessToken
 import com.vk.api.sdk.auth.VKAuthCallback
 import com.vk.api.sdk.auth.VKScope
+import com.vk.api.sdk.exceptions.VKApiCodes
+import com.vk.api.sdk.exceptions.VKApiExecutionException
+import com.vk.api.sdk.requests.VKRequest
+import org.json.JSONObject
 
 
 class AuthActivity : AppCompatActivity() {
@@ -54,7 +60,7 @@ class AuthActivity : AppCompatActivity() {
             startActivityForResult(signInIntent, RC_SIGN_IN);
         }
         vkAuthButton.setOnClickListener {
-            VK.login(this, arrayListOf(VKScope.WALL, VKScope.PHOTOS))
+            VK.login(this, arrayListOf(VKScope.EMAIL))
         }
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -68,7 +74,6 @@ class AuthActivity : AppCompatActivity() {
         val callback = object: VKAuthCallback {
             override fun onLogin(token: VKAccessToken) {
                 authorisedWithVK(token)
-                println("vk")
             }
 
             override fun onLoginFailed(errorCode: Int) {
