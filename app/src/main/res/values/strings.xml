@@ -3,4 +3,6 @@
     <integer name="com_vk_sdk_AppId">7632134</integer>
     <string name="bot_list">Bots</string>
     <string name="account">Account</string>
+    <string name="tariff">Plan</string>
+    <string name="email">Email</string>
 </resources>

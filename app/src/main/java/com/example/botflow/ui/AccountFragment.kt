@@ -1,4 +1,4 @@
-package com.example.botflow.fragments
+package com.example.botflow.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater

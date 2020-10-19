@@ -1,4 +1,3 @@
 package com.example.botflow.models
 
-class Bot {
-}
+class Bot(val name: String)
