@@ -10,7 +10,7 @@ import com.example.botflow.R
 import com.example.botflow.models.Bot
 import com.example.botflow.ui.BotListRecyclerViewAdapter
 
-class BotListFragment() : Fragment() {
+class BotListFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.bot_list_fragment, container, false)
     }

@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import com.example.botflow.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class MainFragment() : Fragment() {
+class MainFragment : Fragment() {
     private lateinit var email: String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
