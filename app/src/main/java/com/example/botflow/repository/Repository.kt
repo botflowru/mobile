@@ -8,8 +8,11 @@ import com.example.botflow.remote_data.WebService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class Repository(private val webService: WebService) {
+@Singleton
+class Repository @Inject constructor(private val webService: WebService) {
     fun getBots(email: String) : LiveData<BotList> {
         val data = MutableLiveData<BotList>()
         webService.getBots(email).enqueue(object : Callback<BotList> {
