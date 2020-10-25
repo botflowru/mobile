@@ -17,7 +17,7 @@ class Repository @Inject constructor(private val webService: WebService) {
         val data = MutableLiveData<BotList>()
         webService.getBots(email).enqueue(object : Callback<BotList> {
             override fun onResponse(call: Call<BotList>, response: Response<BotList>) {
-                data.value = response.body()
+                if (response.body() != null) data.value = response.body()
             }
 
             override fun onFailure(call: Call<BotList>, t: Throwable) {

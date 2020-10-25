@@ -9,6 +9,7 @@ import retrofit2.http.Query
 interface WebService {
     @GET("/bots")
     fun getBots(@Query("email") email: String) : Call<BotList>
-    @GET("/account")
+
+    @GET("/user")
     fun getAccount(@Query("email") email: String) : Call<Account>
 }
