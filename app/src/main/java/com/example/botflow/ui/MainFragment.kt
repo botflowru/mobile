@@ -18,22 +18,21 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        updateUI(BotListFragment(email))
         val bottomNavigationView = view.findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when(it.itemId) {
-                R.id.bot_list -> {
-                    updateUI(BotListFragment(email))
-                    true
-                }
                 R.id.account -> {
                     updateUI(AccountFragment(email))
                     true
                 }
+                R.id.bot_list -> {
+                    updateUI(BotListFragment(email))
+                    true
+                }
                 else -> false
             }
-
         }
+        bottomNavigationView.selectedItemId = R.id.account
     }
 
     private fun updateUI(view: Fragment){

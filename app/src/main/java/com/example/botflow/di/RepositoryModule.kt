@@ -18,7 +18,7 @@ class RepositoryModule {
     @Provides
     fun retrofit(gsonConverterFactory: GsonConverterFactory): Retrofit{
         return Retrofit.Builder()
-            .baseUrl("http://194.67.110.75:8080")
+            .baseUrl("http://89.108.103.185:8080")
             .addConverterFactory(gsonConverterFactory)
             .build()
     }

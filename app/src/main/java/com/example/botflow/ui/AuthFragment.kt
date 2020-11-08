@@ -6,10 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
 import com.example.botflow.R
 import com.example.botflow.activities.MainActivity
@@ -17,7 +14,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
 import com.vk.api.sdk.VK
 import com.vk.api.sdk.auth.VKAccessToken
@@ -44,9 +40,10 @@ class AuthFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val logo = view.findViewById<ImageView>(R.id.logo_image)
+        val authTextView = view.findViewById<TextView>(R.id.auth_textView)
         val authButtons = view.findViewById<LinearLayout>(R.id.auth_buttons)
-        val signInButton = view.findViewById<SignInButton>(R.id.sign_in_button)
-        val vkAuthButton = view.findViewById<ImageButton>(R.id.vk_auth)
+        val googleAuthButton = view.findViewById<Button>(R.id.google_auth_button)
+        val vkAuthButton = view.findViewById<Button>(R.id.vk_auth_button)
         ObjectAnimator.ofFloat(logo, "translationY", -500f).apply {
             duration = 2000
             start()
@@ -55,7 +52,11 @@ class AuthFragment : Fragment() {
             duration = 4000
             start()
         }
-        signInButton.setOnClickListener {
+        ObjectAnimator.ofFloat(authTextView, "alpha", 0f, 1f).apply {
+            duration = 4000
+            start()
+        }
+        googleAuthButton.setOnClickListener {
             val signInIntent = mGoogleSignInClient.signInIntent
             startActivityForResult(signInIntent, RC_SIGN_IN)
         }

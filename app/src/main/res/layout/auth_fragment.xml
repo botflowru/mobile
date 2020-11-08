@@ -13,7 +13,7 @@
         android:contentDescription="@string/app_name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
@@ -21,27 +21,38 @@
 
     <LinearLayout
         android:id="@+id/auth_buttons"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/sign_in_button"
-            android:layout_width="126dp"
-            android:layout_height="54dp" />
+        <Button
+            android:id="@+id/google_auth_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/google_auth" />
 
-        <ImageButton
-            android:backgroundTint="#4c75a3"
-            android:id="@+id/vk_auth"
-            android:layout_width="126dp"
-            android:layout_height="54dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/unnamed" />
-
+        <Button
+            android:id="@+id/vk_auth_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/vk_auth" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/auth_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/auth"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintBottom_toTopOf="@+id/auth_buttons"
+        app:layout_constraintEnd_toEndOf="@+id/logo_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
