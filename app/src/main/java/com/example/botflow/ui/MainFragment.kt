@@ -32,7 +32,7 @@ class MainFragment : Fragment() {
                 else -> false
             }
         }
-        bottomNavigationView.selectedItemId = R.id.account
+        bottomNavigationView.selectedItemId = R.id.bot_list
     }
 
     private fun updateUI(view: Fragment){

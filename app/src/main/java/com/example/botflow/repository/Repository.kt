@@ -17,7 +17,8 @@ class Repository @Inject constructor(private val webService: WebService) {
         val data = MutableLiveData<BotList>()
         webService.getBots(email).enqueue(object : Callback<BotList> {
             override fun onResponse(call: Call<BotList>, response: Response<BotList>) {
-                if (response.body() != null) data.value = response.body()
+                data.value = response.body()
+
             }
 
             override fun onFailure(call: Call<BotList>, t: Throwable) {
@@ -26,6 +27,7 @@ class Repository @Inject constructor(private val webService: WebService) {
         })
         return data
     }
+
     fun getAccount(email: String) : LiveData<Account> {
         val data = MutableLiveData<Account>()
         webService.getAccount(email).enqueue(object : Callback<Account> {
@@ -38,5 +40,9 @@ class Repository @Inject constructor(private val webService: WebService) {
             }
         })
         return data
+    }
+
+    fun saveBot(name: String, email: String) {
+        webService.saveBot(name, email).execute()
     }
 }
