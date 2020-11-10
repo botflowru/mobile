@@ -1,5 +1,6 @@
 package com.example.botflow.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.botflow.R
+import com.example.botflow.activities.BotSettingsActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
@@ -28,14 +30,19 @@ class BotListFragment(private val email: String) : Fragment() {
         botListRecyclerView.layoutManager = LinearLayoutManager(context)
         addBotButton.setOnClickListener {
             val dialog = SaveBotDialogFragment(viewModel)
-            dialog.show(requireActivity().supportFragmentManager, null)
+            dialog.show(activity!!.supportFragmentManager, null)
         }
         viewModel.bots.observe(viewLifecycleOwner, Observer {
-            botListRecyclerView.adapter = BotListRecyclerViewAdapter(it)
+            botListRecyclerView.adapter = BotListRecyclerViewAdapter(it, viewModel)
             botListRecyclerView.visibility = View.VISIBLE
             addBotButton.visibility = View.VISIBLE
             progressBar.visibility = View.INVISIBLE
 
+        })
+        viewModel.bot.observe(viewLifecycleOwner, Observer {
+            val intent = Intent(activity, BotSettingsActivity::class.java)
+            intent.putExtra("bot", it)
+            startActivity(intent)
         })
     }
 }

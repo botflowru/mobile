@@ -1,3 +1,5 @@
 package com.example.botflow.models
 
-class Bot(val name: String, val email: String)
+import java.io.Serializable
+
+class Bot(val name: String, val email: String) : Serializable

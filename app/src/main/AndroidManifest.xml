@@ -12,6 +12,7 @@
         android:roundIcon="@drawable/__2"
         android:supportsRtl="true"
         android:theme="@style/Theme.Botflow">
+        <activity android:name=".activities.BotSettingsActivity"/>
         <activity android:name=".activities.MainActivity"/>
         <activity android:name=".activities.AuthActivity">
             <intent-filter>

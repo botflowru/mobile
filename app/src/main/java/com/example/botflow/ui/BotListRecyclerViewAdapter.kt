@@ -8,7 +8,7 @@ import com.example.botflow.R
 import com.example.botflow.models.Bot
 import com.example.botflow.models.BotList
 
-class BotListRecyclerViewAdapter(private val botList: BotList) : RecyclerView.Adapter<BotListRecyclerViewAdapter.BotListViewHolder>(){
+class BotListRecyclerViewAdapter(private val botList: BotList, private val viewModel: MainViewModel) : RecyclerView.Adapter<BotListRecyclerViewAdapter.BotListViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BotListViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         return BotListViewHolder(layoutInflater, parent)
@@ -28,6 +28,9 @@ class BotListRecyclerViewAdapter(private val botList: BotList) : RecyclerView.Ad
         fun bind(bot: Bot) {
             val botNameTextView = itemView.findViewById<TextView>(R.id.bot_name_textView)
             botNameTextView.text = bot.name
+            itemView.setOnClickListener {
+                viewModel.bot.value = bot
+            }
         }
     }
 }
