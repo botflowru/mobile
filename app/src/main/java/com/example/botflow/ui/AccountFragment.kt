@@ -25,9 +25,11 @@ class AccountFragment(private val email: String) : Fragment() {
         val planTextView = view.findViewById<TextView>(R.id.plan_textView)
         val planTextViewup = view.findViewById<TextView>(R.id.textView)
         val botsTextView = view.findViewById<TextView>(R.id.bots_textView)
+        val botsTextViewUP = view.findViewById<TextView>(R.id.textView3)
         val progressBar = view.findViewById<ProgressBar>(R.id.account_progressBar)
         val accountLayout = view.findViewById<ConstraintLayout>(R.id.account_constraintLayout)
         planTextViewup.setTypeface(planTextViewup.getTypeface(), Typeface.BOLD)
+        botsTextViewUP.setTypeface(botsTextViewUP.getTypeface(), Typeface.BOLD)
         viewModel.account.observe(viewLifecycleOwner, Observer {
             emailTextView.text = it.email
             planTextView.text = it.plan
