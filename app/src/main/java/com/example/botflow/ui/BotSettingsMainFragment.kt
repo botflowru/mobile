@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.botflow.R
 import com.example.botflow.models.Bot
@@ -21,28 +21,33 @@ class BotSettingsMainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val drawerLayout = view.findViewById<DrawerLayout>(R.id.drawer_layout)
         val navigationView = view.findViewById<NavigationView>(R.id.navigationView)
         val header = navigationView.inflateHeaderView(R.layout.nav_header)
         val botNameTextView = header.findViewById<TextView>(R.id.botName_textView)
         botNameTextView.text = bot.name
         navigationView.bringToFront()
+        updateUI(GeneralBotSettingsFragment(bot))
         navigationView.setNavigationItemSelectedListener {
             when(it.itemId) {
                 R.id.general -> {
-                    Toast.makeText(context, "click", Toast.LENGTH_SHORT).show()
                     updateUI(GeneralBotSettingsFragment(bot))
+                    drawerLayout.closeDrawers()
                     true
                 }
                 R.id.intents -> {
                     updateUI(IntentsBotSettingsFragment(bot))
+                    drawerLayout.closeDrawers()
                     true
                 }
                 R.id.entities -> {
                     updateUI(EntitiesBotSettingsFragment(bot))
+                    drawerLayout.closeDrawers()
                     true
                 }
                 R.id.integrations -> {
                     updateUI(IntegrationsBotSettingsFragment(bot))
+                    drawerLayout.closeDrawers()
                     true
                 }
                 else -> false
