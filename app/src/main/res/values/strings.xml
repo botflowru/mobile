@@ -8,4 +8,10 @@
     <string name="vk_auth">Войти с VK</string>
     <string name="google_auth">Войти с Google</string>
     <string name="auth">Войдите, чтобы продолжить</string>
+    <string name="bot_name">Enter bot name</string>
+    <string name="general">General</string>
+    <string name="intents">Intents</string>
+    <string name="entities">Entities</string>
+    <string name="integrations">Integrations</string>
+    <string name="save">Save</string>
 </resources>

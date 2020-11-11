@@ -87,12 +87,12 @@ class AuthFragment : Fragment() {
         }
     }
     private fun authorisedWithGoogle(account: GoogleSignInAccount) {
-        val intent = Intent(context, MainActivity::class.java)
+        val intent = Intent(activity, MainActivity::class.java)
         intent.putExtra("email", account.email.toString())
         startActivity(intent)
     }
     private fun authorisedWithVK(token: VKAccessToken) {
-        val intent = Intent(context, MainActivity::class.java)
+        val intent = Intent(activity, MainActivity::class.java)
         intent.putExtra("email", token.email.toString())
         startActivity(intent)
     }
