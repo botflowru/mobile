@@ -3,7 +3,6 @@ package com.example.botflow.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.botflow.models.Account
-import com.example.botflow.models.Bot
 import com.example.botflow.models.BotList
 import com.example.botflow.remote_data.WebService
 import retrofit2.Call
@@ -43,11 +42,11 @@ class Repository @Inject constructor(private val webService: WebService) {
         return data
     }
 
-    fun saveBot(bot: Bot) {
-        webService.saveBot(bot).execute()
+    fun saveBot(name: String, email: String) {
+        webService.saveBot(name, email).execute()
     }
 
-    fun updateBot(bot: Bot) {
-        webService.updateBot(bot).execute()
+    fun updateBot(id: Int, name: String) {
+        webService.updateBot(id, name).execute()
     }
 }

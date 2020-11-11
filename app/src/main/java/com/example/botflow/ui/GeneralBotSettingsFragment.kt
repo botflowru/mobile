@@ -20,8 +20,8 @@ class GeneralBotSettingsFragment(private val bot: Bot, private val viewModel: Ma
         val editText = view.findViewById<EditText>(R.id.general_editText)
         val saveButton = view.findViewById<Button>(R.id.general_save_button)
         saveButton.setOnClickListener {
-            bot.name = editText.text.toString()
-            viewModel.updateBot(bot)
+            val name = editText.text.toString()
+            viewModel.updateBot(bot.id!!, name)
         }
         editText.setText(bot.name)
     }

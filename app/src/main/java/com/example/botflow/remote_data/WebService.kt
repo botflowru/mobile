@@ -1,7 +1,6 @@
 package com.example.botflow.remote_data
 
 import com.example.botflow.models.Account
-import com.example.botflow.models.Bot
 import com.example.botflow.models.BotList
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -16,8 +15,8 @@ interface WebService {
     fun getAccount(@Query("email") email: String) : Call<Account>
 
     @GET("/save_bot")
-    fun saveBot(@Query("bot") bot: Bot) : Call<ResponseBody>
+    fun saveBot(@Query("name") name: String, @Query("email") email: String) : Call<ResponseBody>
 
     @GET("/update_bot")
-    fun updateBot(@Query("bot") bot: Bot) : Call<ResponseBody>
+    fun updateBot(@Query("id") id: Int, @Query("name") name: String) : Call<ResponseBody>
 }

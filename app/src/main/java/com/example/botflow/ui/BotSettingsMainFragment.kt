@@ -17,7 +17,7 @@ class BotSettingsMainFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         bot = activity!!.intent.getSerializableExtra("bot") as Bot
-        viewModel = activity!!.intent.getSerializableExtra("viewModel") as MainViewModel
+        viewModel = MainViewModel.getMainViewModel(bot.email!!)
         return inflater.inflate(R.layout.bot_settings_main_fragment, container, false)
     }
 
