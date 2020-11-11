@@ -33,10 +33,16 @@ class BotListFragment(private val email: String) : Fragment() {
             dialog.show(activity!!.supportFragmentManager, null)
         }
         viewModel.bots.observe(viewLifecycleOwner, Observer {
-            botListRecyclerView.adapter = BotListRecyclerViewAdapter(it, viewModel)
-            botListRecyclerView.visibility = View.VISIBLE
-            addBotButton.visibility = View.VISIBLE
-            progressBar.visibility = View.INVISIBLE
+            if(it == null) {
+                val errorDialog = ErrorDialog()
+                errorDialog.show(activity!!.supportFragmentManager, null)
+            }
+            else {
+                botListRecyclerView.adapter = BotListRecyclerViewAdapter(it, viewModel)
+                botListRecyclerView.visibility = View.VISIBLE
+                addBotButton.visibility = View.VISIBLE
+                progressBar.visibility = View.INVISIBLE
+            }
 
         })
         viewModel.bot.observe(viewLifecycleOwner, Observer {

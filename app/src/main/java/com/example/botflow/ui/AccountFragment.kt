@@ -26,11 +26,17 @@ class AccountFragment(private val email: String) : Fragment() {
         val progressBar = view.findViewById<ProgressBar>(R.id.account_progressBar)
         val accountLayout = view.findViewById<ConstraintLayout>(R.id.account_constraintLayout)
         viewModel.account.observe(viewLifecycleOwner, Observer {
-            emailTextView.text = it.email
-            planTextView.text = it.plan
-            botsTextView.text = it.bots.toString()
-            progressBar.visibility = View.INVISIBLE
-            accountLayout.visibility = View.VISIBLE
+            if(it == null) {
+                val errorDialog = ErrorDialog()
+                errorDialog.show(activity!!.supportFragmentManager, null)
+            }
+            else {
+                emailTextView.text = it.email
+                planTextView.text = it.plan
+                botsTextView.text = it.bots.toString()
+                progressBar.visibility = View.INVISIBLE
+                accountLayout.visibility = View.VISIBLE
+            }
         })
 
     }
