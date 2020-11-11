@@ -13,9 +13,11 @@ import com.google.android.material.navigation.NavigationView
 
 class BotSettingsMainFragment : Fragment() {
     private lateinit var bot: Bot
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         bot = activity!!.intent.getSerializableExtra("bot") as Bot
+        viewModel = activity!!.intent.getSerializableExtra("viewModel") as MainViewModel
         return inflater.inflate(R.layout.bot_settings_main_fragment, container, false)
     }
 
@@ -27,11 +29,11 @@ class BotSettingsMainFragment : Fragment() {
         val botNameTextView = header.findViewById<TextView>(R.id.botName_textView)
         botNameTextView.text = bot.name
         navigationView.bringToFront()
-        updateUI(GeneralBotSettingsFragment(bot))
+        updateUI(GeneralBotSettingsFragment(bot, viewModel))
         navigationView.setNavigationItemSelectedListener {
             when(it.itemId) {
                 R.id.general -> {
-                    updateUI(GeneralBotSettingsFragment(bot))
+                    updateUI(GeneralBotSettingsFragment(bot, viewModel))
                     drawerLayout.closeDrawers()
                     true
                 }

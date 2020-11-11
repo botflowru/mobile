@@ -8,15 +8,22 @@ import com.example.botflow.models.Account
 import com.example.botflow.models.Bot
 import com.example.botflow.models.BotList
 import com.example.botflow.repository.Repository
+import java.io.Serializable
 
-class MainViewModel(private val repository: Repository, private val email: String) : ViewModel(){
+class MainViewModel(private val repository: Repository, val email: String) : ViewModel(), Serializable{
     val account: LiveData<Account> = repository.getAccount(email)
     val bots: LiveData<BotList> = repository.getBots(email)
     val bot: MutableLiveData<Bot> = MutableLiveData()
 
-    fun saveBot(name: String){
+    fun saveBot(bot: Bot){
         Thread {
-            repository.saveBot(name, email)
+            repository.saveBot(bot)
+        }.start()
+    }
+
+    fun updateBot(bot: Bot){
+        Thread {
+            repository.updateBot(bot)
         }.start()
     }
     companion object {

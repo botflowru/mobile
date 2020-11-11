@@ -48,6 +48,7 @@ class BotListFragment(private val email: String) : Fragment() {
         viewModel.bot.observe(viewLifecycleOwner, Observer {
             val intent = Intent(activity, BotSettingsActivity::class.java)
             intent.putExtra("bot", it)
+            intent.putExtra("viewModel", viewModel)
             startActivity(intent)
         })
     }

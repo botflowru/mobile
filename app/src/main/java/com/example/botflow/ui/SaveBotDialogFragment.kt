@@ -6,6 +6,7 @@ import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
 import com.example.botflow.R
+import com.example.botflow.models.Bot
 
 class SaveBotDialogFragment(private val viewModel: MainViewModel) : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -17,7 +18,8 @@ class SaveBotDialogFragment(private val viewModel: MainViewModel) : DialogFragme
                 .setView(dialogView)
                 .setPositiveButton("OK") { dialog, _ ->
                     val name = botNameEditText.text.toString()
-                    viewModel.saveBot(name)
+                    val bot = Bot(name, viewModel.email)
+                    viewModel.saveBot(bot)
                     dialog.cancel()
                 }
             builder.create()
