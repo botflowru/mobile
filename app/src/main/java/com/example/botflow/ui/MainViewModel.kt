@@ -11,7 +11,7 @@ import com.example.botflow.repository.Repository
 
 class MainViewModel(private val repository: Repository, val email: String) : ViewModel(){
     val account: LiveData<Account> = repository.getAccount(email)
-    val bots: LiveData<BotList> = repository.getBots(email)
+    var bots: LiveData<BotList> = repository.getBots(email)
     val bot: MutableLiveData<Bot> = MutableLiveData()
 
     fun saveBot(name: String){
@@ -24,6 +24,10 @@ class MainViewModel(private val repository: Repository, val email: String) : Vie
         Thread {
             repository.updateBot(id, name)
         }.start()
+    }
+
+    fun updateList() {
+        bots = repository.getBots(email)
     }
     companion object {
         fun getMainViewModel(email: String) : MainViewModel {

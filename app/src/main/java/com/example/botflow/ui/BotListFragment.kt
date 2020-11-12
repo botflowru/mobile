@@ -32,28 +32,26 @@ class BotListFragment(private val email: String) : Fragment() {
             val dialog = SaveBotDialogFragment(viewModel)
             dialog.show(activity!!.supportFragmentManager, null)
         }
-        viewModel.bots.observe(viewLifecycleOwner, Observer {
-            if(it == null) {
-                val errorDialog = ErrorDialog()
-                errorDialog.show(activity!!.supportFragmentManager, null)
-            }
-            else {
-                botListRecyclerView.adapter = BotListRecyclerViewAdapter(it, viewModel)
-                botListRecyclerView.visibility = View.VISIBLE
-                addBotButton.visibility = View.VISIBLE
-                progressBar.visibility = View.INVISIBLE
-            }
-
-        })
         viewModel.bot.observe(viewLifecycleOwner, Observer {
             val intent = Intent(activity, BotSettingsActivity::class.java)
             intent.putExtra("bot", it)
             startActivity(intent)
         })
-    }
+        view.viewTreeObserver.addOnWindowFocusChangeListener {
+            viewModel.updateList()
+            viewModel.bots.observe(viewLifecycleOwner, Observer {
+                if(it == null) {
+                    val errorDialog = ErrorDialog()
+                    errorDialog.show(activity!!.supportFragmentManager, null)
+                }
+                else {
+                    botListRecyclerView.adapter = BotListRecyclerViewAdapter(it, viewModel)
+                    botListRecyclerView.visibility = View.VISIBLE
+                    addBotButton.visibility = View.VISIBLE
+                    progressBar.visibility = View.INVISIBLE
+                }
 
-    override fun onResume() {
-        super.onResume()
-
+            })
+        }
     }
 }
