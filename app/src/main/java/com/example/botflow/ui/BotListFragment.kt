@@ -51,4 +51,9 @@ class BotListFragment(private val email: String) : Fragment() {
             startActivity(intent)
         })
     }
+
+    override fun onResume() {
+        super.onResume()
+
+    }
 }
