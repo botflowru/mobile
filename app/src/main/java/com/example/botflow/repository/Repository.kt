@@ -45,4 +45,8 @@ class Repository @Inject constructor(private val webService: WebService) {
     fun saveBot(name: String, email: String) {
         webService.saveBot(name, email).execute()
     }
+
+    fun updateBot(id: Int, name: String) {
+        webService.updateBot(id, name).execute()
+    }
 }

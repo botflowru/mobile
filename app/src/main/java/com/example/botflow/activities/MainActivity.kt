@@ -8,4 +8,9 @@ class MainActivity : SingleFragmentActivity(){
         return MainFragment()
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+        this.finishAffinity()
+    }
+
 }

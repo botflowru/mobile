@@ -16,4 +16,7 @@ interface WebService {
 
     @GET("/save_bot")
     fun saveBot(@Query("name") name: String, @Query("email") email: String) : Call<ResponseBody>
+
+    @GET("/update_bot")
+    fun updateBot(@Query("id") id: Int, @Query("name") name: String) : Call<ResponseBody>
 }

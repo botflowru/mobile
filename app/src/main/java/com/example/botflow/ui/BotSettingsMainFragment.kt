@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.example.botflow.R
 import com.example.botflow.models.Bot
@@ -13,36 +13,43 @@ import com.google.android.material.navigation.NavigationView
 
 class BotSettingsMainFragment : Fragment() {
     private lateinit var bot: Bot
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         bot = activity!!.intent.getSerializableExtra("bot") as Bot
+        viewModel = MainViewModel.getMainViewModel(bot.email!!)
         return inflater.inflate(R.layout.bot_settings_main_fragment, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val drawerLayout = view.findViewById<DrawerLayout>(R.id.drawer_layout)
         val navigationView = view.findViewById<NavigationView>(R.id.navigationView)
         val header = navigationView.inflateHeaderView(R.layout.nav_header)
         val botNameTextView = header.findViewById<TextView>(R.id.botName_textView)
         botNameTextView.text = bot.name
         navigationView.bringToFront()
+        updateUI(GeneralBotSettingsFragment(bot, viewModel))
         navigationView.setNavigationItemSelectedListener {
             when(it.itemId) {
                 R.id.general -> {
-                    Toast.makeText(context, "click", Toast.LENGTH_SHORT).show()
-                    updateUI(GeneralBotSettingsFragment(bot))
+                    updateUI(GeneralBotSettingsFragment(bot, viewModel))
+                    drawerLayout.closeDrawers()
                     true
                 }
                 R.id.intents -> {
                     updateUI(IntentsBotSettingsFragment(bot))
+                    drawerLayout.closeDrawers()
                     true
                 }
                 R.id.entities -> {
                     updateUI(EntitiesBotSettingsFragment(bot))
+                    drawerLayout.closeDrawers()
                     true
                 }
                 R.id.integrations -> {
                     updateUI(IntegrationsBotSettingsFragment(bot))
+                    drawerLayout.closeDrawers()
                     true
                 }
                 else -> false
